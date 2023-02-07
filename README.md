@@ -1,4 +1,4 @@
-![ocean floor](/home/kkalhor/protein_stability_project/scientific_images/intro_title.png)
+![ocean floor](KambizKalhor/proteostab/scientific_images/intro_title.png)
 
 *STEEN'S LAB*\
 codes by: kami
