@@ -4,7 +4,7 @@
 codes by: kami
 
 # Part one : diamond blast between two protein datasets
-![diamond](scientific_images/diamond.png)
+![diamond](images/diamond.png)
 
 ###### learn more about diamond: https://manpages.ubuntu.com/manpages/focal/man1/diamond.1.html
 
@@ -455,7 +455,7 @@ i choose the last blast result because it is the completest.(it has also lots of
 
 
 # PART TWO: Pythonic Probing: A Whimsical Dive into Oceanic Protein Data Analysis
-![python](scientific_images/python_logo.png)
+![python](images/python_logo.png)
 
 # what bit-score and e-value is good in blast?
 
@@ -569,7 +569,7 @@ plt.show()
 
 
     
-![png](diamond_kamicode_files/diamond_kamicode_26_0.png)
+![png](markdown_related_files/26_0.png)
     
 
 
@@ -760,7 +760,7 @@ plt.show()
 
 
     
-![png](diamond_kamicode_files/diamond_kamicode_44_0.png)
+![png](markdown_related_files/44_0.png)
     
 
 
@@ -825,7 +825,7 @@ plt.show()
 
 
     
-![png](diamond_kamicode_files/diamond_kamicode_50_0.png)
+![png](markdown_related_files/50_0.png)
     
 
 
@@ -855,7 +855,7 @@ plt.show()
 
 
     
-![png](diamond_kamicode_files/diamond_kamicode_52_0.png)
+![png](markdown_related_files/52_0.png)
     
 
 
