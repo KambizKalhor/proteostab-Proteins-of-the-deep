@@ -1,4 +1,4 @@
-![ocean floor](scientific_images/intro_title.png)
+![ocean floor](images/intro_title.png)
 
 *STEEN'S LAB*\
 codes by: kami
