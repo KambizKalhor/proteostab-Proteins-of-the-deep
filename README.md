@@ -1,10 +1,10 @@
-![ocean floor](KambizKalhor/proteostab/scientific_images/intro_title.png)
+![ocean floor](scientific_images/intro_title.png)
 
 *STEEN'S LAB*\
 codes by: kami
 
 # Part one : diamond blast between two protein datasets
-![diamond](/home/kkalhor/protein_stability_project/scientific_images/diamond.png)
+![diamond](scientific_images/diamond.png)
 
 ###### learn more about diamond: https://manpages.ubuntu.com/manpages/focal/man1/diamond.1.html
 
@@ -455,7 +455,7 @@ i choose the last blast result because it is the completest.(it has also lots of
 
 
 # PART TWO: Pythonic Probing: A Whimsical Dive into Oceanic Protein Data Analysis
-![python](/home/kkalhor/protein_stability_project/scientific_images/python_logo.png)
+![python](scientific_images/python_logo.png)
 
 # what bit-score and e-value is good in blast?
 
