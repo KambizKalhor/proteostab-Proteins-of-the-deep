@@ -5,10 +5,8 @@ codes by: kami
 
 # Part one : diamond blast between two protein datasets
 ![diamond](images/diamond.png)
-# HI
-## HI
-### HI
-#### HI
+
+
 ###### learn more about diamond: https://manpages.ubuntu.com/manpages/focal/man1/diamond.1.html
 
 step 1: download and install diamond
