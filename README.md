@@ -43,6 +43,35 @@ update_blastdb.pl --decompress --blastdb_version 5 swissprot
 ```
 
 
+# PART TWO: R: Analysing the blast output using R
+![R](images/Banner-R.png)
+
+```
+install.packages("ggplot2", lib = "/home1/kkalhor/important_basic_files/R_packages")
+install.packages("readr", lib = "/home1/kkalhor/important_basic_files/R_packages")
+
+library(ggplot2, lib.loc="/home1/kkalhor/important_basic_files/R_packages")
+library(readr, lib.loc="/home1/kkalhor/important_basic_files/R_packages")
+
+
+# Define column names
+header_names <- c("query_sequence_ID", "subject_sequence_ID", "pident", "length", "mismatch",
+                  "gapopen", "qstart", "qend", "sstart", "send", "E_value", "Bit_Score")
+
+# Read the data
+df <- read_tsv("matches.tsv", col_names = header_names)
+
+# Create the plot
+evalue_plot <- ggplot(df, aes(x = E_value)) +
+  geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
+  labs(title = "Distribution of E-values", x = "E-value", y = "Frequency") +
+  theme_minimal()
+
+# Save the plot as a PNG
+ggsave("evalue_distribution.png", plot = evalue_plot, width = 8, height = 6, dpi = 300)
+```
+
+
 # PART TWO: Pythonic Probing: Analysing the blast output using python
 ![python](images/python_logo.png)
 
@@ -126,31 +155,5 @@ plt.show()
 - the maximum E-value is 0.000999 and the minimum E-value is 0.0
 
 
-# PART THREE: R: Analysing the blast output using R
-![python](images/python_logo.png)
-
-```
-install.packages("ggplot2", lib = "/home1/kkalhor/important_basic_files/R_packages")
-install.packages("readr", lib = "/home1/kkalhor/important_basic_files/R_packages")
-
-library(ggplot2, lib.loc="/home1/kkalhor/important_basic_files/R_packages")
-library(readr, lib.loc="/home1/kkalhor/important_basic_files/R_packages")
-
-
-# Define column names
-header_names <- c("query_sequence_ID", "subject_sequence_ID", "pident", "length", "mismatch",
-                  "gapopen", "qstart", "qend", "sstart", "send", "E_value", "Bit_Score")
-
-# Read the data
-df <- read_tsv("matches.tsv", col_names = header_names)
-
-# Create the plot
-evalue_plot <- ggplot(df, aes(x = E_value)) +
-  geom_histogram(binwidth = 0.1, fill = "blue", color = "black") +
-  labs(title = "Distribution of E-values", x = "E-value", y = "Frequency") +
-  theme_minimal()
-
-# Save the plot as a PNG
-ggsave("evalue_distribution.png", plot = evalue_plot, width = 8, height = 6, dpi = 300)
 
 ```
