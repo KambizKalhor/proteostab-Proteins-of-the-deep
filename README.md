@@ -154,6 +154,3 @@ plt.show()
 - in histogram above you can see most matches have the E-value near Zero\
 - the maximum E-value is 0.000999 and the minimum E-value is 0.0
 
-
-
-```
