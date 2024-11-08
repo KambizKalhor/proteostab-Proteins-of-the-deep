@@ -7,178 +7,40 @@ codes by: kami
 ![diamond](images/diamond.png)
 
 
-###### learn more about diamond: https://manpages.ubuntu.com/manpages/focal/man1/diamond.1.html
+# step 1: download and install diamond blast on CARC
+how to do a simple diamond blast on CARC and also how to read the output
 
-step 1: download and install diamond
 
+## downloading the tool
+you dont need to download it any more.
 
-```bash
-%%bash
-# make a new working directory for balst using diamond
-mkdir directory_for_diamond
-cd directory_for_diamond
-# downloading the diamond tool
-wget http://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
-# decompressing 
+find it at /home1/kkalhor/important_basic_files/diamond_blast/diamond --help
+```
+wget http://github.com/bbuchfink/diamond/releases/download/v2.1.10/diamond-linux64.tar.gz
 tar xzf diamond-linux64.tar.gz
 ```
 
-    URL transformed to HTTPS due to an HSTS policy
-    --2023-02-07 17:29:12--  https://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
-    Resolving github.com (github.com)... 140.82.113.3
-    Connecting to github.com (github.com)|140.82.113.3|:443... connected.
-    HTTP request sent, awaiting response... 302 Found
-    Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/31987083/718cf099-bab1-4005-88f2-dec24b5fbe7a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230207%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230207T232913Z&X-Amz-Expires=300&X-Amz-Signature=2756f22be58026ae2b7847526323ea1adae12f60305008b655a9445501ae44f2&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=31987083&response-content-disposition=attachment%3B%20filename%3Ddiamond-linux64.tar.gz&response-content-type=application%2Foctet-stream [following]
-    --2023-02-07 17:29:13--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/31987083/718cf099-bab1-4005-88f2-dec24b5fbe7a?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230207%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230207T232913Z&X-Amz-Expires=300&X-Amz-Signature=2756f22be58026ae2b7847526323ea1adae12f60305008b655a9445501ae44f2&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=31987083&response-content-disposition=attachment%3B%20filename%3Ddiamond-linux64.tar.gz&response-content-type=application%2Foctet-stream
-    Resolving objects.githubusercontent.com (objects.githubusercontent.com)... 185.199.108.133, 185.199.111.133, 185.199.110.133, ...
-    Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.108.133|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 13078995 (12M) [application/octet-stream]
-    Saving to: ‘diamond-linux64.tar.gz’
-    
-         0K .......... .......... .......... .......... ..........  0% 1.95M 6s
-        50K .......... .......... .......... .......... ..........  0% 2.66M 6s
-     12650K .......... .......... .......... .......... .......... 99% 84.7M 0s
-     12700K .......... .......... .......... .......... .......... 99% 81.4M 0s
-     12750K .......... .......... .......... .......... ..........100%  178M=0.3s
-    
-    2023-02-07 17:29:13 (45.7 MB/s) - ‘diamond-linux64.tar.gz’ saved [13078995/13078995]
-    
-
-
-step 2: transfer your fasta dile to the same directory as diamond is\
-here i made a combined fasta because i also want to blast my fasta file against itself
-
-
-```bash
-%%bash
-# copy the two fasta files we want to perform diamond blast in our working directory
-cp tylor_output_data/SRR7066492.faa directory_for_diamond/SRR7066492.faa
-cp tylor_output_data/SRR7066493.faa directory_for_diamond/SRR7066493.faa
-cat directory_for_diamond/SRR7066493.faa directory_for_diamond/SRR7066492.faa > directory_for_diamond/combined_SRR.faa
-```
-
-step 3: make reference for your blast\
-here i made three references because i want to try every combination
-
-
-```bash
-%%bash
-cd directory_for_diamond
 # creating a diamond-formatted database file
-./diamond makedb --in SRR7066493.faa -d SRR7066493_reference
-./diamond makedb --in SRR7066492.faa -d SRR7066492_reference
-./diamond makedb --in combined_SRR.faa -d combined_SRR_reference
+```
+/home1/kkalhor/important_basic_files/diamond_blast/diamond makedb --in reference.fasta -d reference
 ```
 
-    diamond v2.0.14.152 (C) Max Planck Society for the Advancement of Science
-    Documentation, support and updates available at http://www.diamondsearch.org
-    Please cite: http://dx.doi.org/10.1038/s41592-021-01101-x Nature Methods (2021)
-    
-    #CPU threads: 36
-    Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
-    Database input file: SRR7066493.faa
-    Opening the database file...  [0s]
-    Loading sequences...  [0.044s]
-    Masking sequences...  [0.033s]
-    Writing sequences...  [0.011s]
-    Hashing sequences...  [0.004s]
-    Loading sequences...  [0s]
-    Writing trailer...  [0s]
-    Closing the input file...  [0s]
-    Closing the database file...  [0.002s]
-    
-    Database sequences  28154
-      Database letters  7097417
-         Database hash  71d2a4851354094218ec1b3638a861d1
-            Total time  0.096000s
-    diamond v2.0.14.152 (C) Max Planck Society for the Advancement of Science
-    Documentation, support and updates available at http://www.diamondsearch.org
-    Please cite: http://dx.doi.org/10.1038/s41592-021-01101-x Nature Methods (2021)
-    
-    #CPU threads: 36
-    Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
-    Database input file: combined_SRR.faa
-    Opening the database file...  [0s]
-    Loading sequences...  [0.051s]
-    Masking sequences...  [0.04s]
-    Writing sequences...  [0.014s]
-    Hashing sequences...  [0.005s]
-    Loading sequences...  [0s]
-    Writing trailer...  [0s]
-    Closing the input file...  [0s]
-    Closing the database file...  [0.001s]
-    
-    Database sequences  36069
-      Database letters  9275124
-         Database hash  8aa975aa33dd6c7a74e91552fe975f0f
-            Total time  0.115000s
+# running a search in blastp mode
+```
+/home1/kkalhor/important_basic_files/diamond_blast/diamond  blastp -d reference -q queries.fasta -o matches.tsv
+```
 
-
-step 4: diamond blast main command\
-i did every possible combination for query and reference
-
-
-```bash
-%%bash
-cd directory_for_diamond
-# use of of the commend below
-# running a search in blastp mode because we have two .faa files
-./diamond blastp -d SRR7066493_reference -q SRR7066492.faa -o matches_SRR7066493_as_reference.tsv --quiet
-./diamond blastp -d SRR7066492_reference -q SRR7066493.faa -o matches_SRR7066492_as_reference.tsv --quiet
-./diamond blastp -d combined_SRR_reference -q SRR7066493.faa -o matches_combined_SRR_as_reference93.tsv --quiet
-./diamond blastp -d combined_SRR_reference -q SRR7066492.faa -o matches_combined_SRR_as_reference92.tsv --quiet
-# other options include:
 # running a search in blastx mode
-###./diamond blastx -d reference -q reads.fasta -o matches.tsv
+```
+/home1/kkalhor/important_basic_files/diamond_blast/diamond  blastx -d reference -q reads.fasta -o matches.tsv
+```
 
-# or you can blast agains the downloaded database, here you dont need two .faa files and you blast your sequence against a database
 # downloading and using a BLAST database
-###update_blastdb.pl --decompress --blastdb_version 5 swissprot
-###./diamond prepdb -d swissprot
-###./diamond blastp -d swissprot -q queries.fasta -o matches.tsv
 ```
-
-check point 1\
-a glimpse on the initial data and number of matches
-
-
-```bash
-%%bash
-cd directory_for_diamond
-grep -c SRR7066492 SRR7066492.faa 
-grep -c SRR7066493 SRR7066493.faa 
-grep -c SRR7066493 matches_SRR7066492_as_reference.tsv 
-grep -c SRR7066492 matches_SRR7066493_as_reference.tsv 
-grep -c SRR7066492 matches_combined_SRR_as_reference92.tsv
-grep -c SRR7066493 matches_combined_SRR_as_reference93.tsv
+update_blastdb.pl --decompress --blastdb_version 5 swissprot
+/home1/kkalhor/important_basic_files/diamond_blast/diamond  prepdb -d swissprot
+/home1/kkalhor/important_basic_files/diamond_blast/diamond  blastp -d swissprot -q queries.fasta -o matches.tsv
 ```
-
-    7915
-    28154
-    382813
-    162747
-    173703
-    600900
-
-
-# what we understand about data in this part?
-- we have 7915  proteins in SRR7066492 sample.
-- we have 28154 proteins in SRR7066493 sample.
-
-- when we diamond blast SRR7066493 sample against SRR7066492 sample we find 382813 matches.
-- when we diamond blast SRR7066492 sample against SRR7066493 sample we find 162747 matches.
-
-- when we diamond blast SRR7066492 sample against all sample (pool of SRR7066493 and SRR7066493) we find 173703 matches.
-- when we diamond blast SRR7066493 sample against all sample (pool of SRR7066493 and SRR7066493) we find 600900 matches.
-
-### what does it mean?
-to me it means that:
-1. we have proteins with mutiple matches
-2. we have homolog proteins in same sample
-   
-so, let find out how many groups we have.
-i choose the last blast result because it is the completest.(it has also lots of redundancy)
 
 
 # PART TWO: Pythonic Probing: A Whimsical Dive into Oceanic Protein Data Analysis
@@ -204,7 +66,7 @@ step 1: importing data
 ```python
 import pandas as pd
 header_names = ["query_sequence_ID", "subject_sequence_ID", "pident", "length", "mismatch", "gapopen", "qstart", "qend", "sstart", "send", "E_value", "Bit_Score"]
-df = pd.read_csv("directory_for_diamond/matches_combined_SRR_as_reference93.tsv", sep="\t",names=header_names)
+df = pd.read_csv("diamond/output/directory/matches.tsv", sep="\t",names=header_names)
 ```
 
 ### what are these header mean in diamond output? 
@@ -234,46 +96,6 @@ print('number of unique query_sequence_ID is: ', len(set(df['query_sequence_ID']
     number of matched is:                   600900
     number of unique query_sequence_ID is:  28154    which is equal to number of proteins in sample
 
-
-step 2: now we should remove self matches using python code below:
-
-
-```python
-row_count_before_removing = df.shape[0]
-
-df = df[df['query_sequence_ID'] != df['subject_sequence_ID']]
-
-row_count_after_removing = df.shape[0]
-number_of_removed_rows = row_count_before_removing - row_count_after_removing
-print('we have had ',number_of_removed_rows, ' self matches which are now removed')
-
-```
-
-    we have had  28154  self matches which are now removed
-
-
-step 3: now we should remove redundancies like when a --> b and b --> a
-
-
-```python
-import pandas as pd
-import numpy as np
-
-# compare elements in two columns and select the larger of the two # make two new sorted columns
-df['compare1'] = np.where(df['query_sequence_ID'] > df['subject_sequence_ID'], df['query_sequence_ID'], df['subject_sequence_ID'])
-df['compare2'] = np.where(df['subject_sequence_ID'] < df['query_sequence_ID'], df['subject_sequence_ID'], df['query_sequence_ID'])
-
-# creat a new column which is cincatanated of two columns we made before
-df['unique_code'] = df['compare1'] + df['compare2']
-
-# now we are going to remove rows with similar 'unique_code' but first we sort them by E_values
-df = df.sort_values(by='E_value')
-df.drop_duplicates(subset='unique_code', inplace=True)
-
-# now we need to remove the 2 extra columns we made later
-df.drop('compare1', axis=1, inplace=True)
-df.drop('compare2', axis=1, inplace=True)
-```
 
 step 4: checking the distribution of E-values
 
